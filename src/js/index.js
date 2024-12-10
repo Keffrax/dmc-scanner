@@ -18,6 +18,7 @@ import './components/clipboard-copy.js';
 import './components/bs-result.js';
 import './components/bs-settings.js';
 import './components/bs-history.js';
+import { identifyModel } from './helpers/validate.js';
 
 (async function () {
   const tabGroupEl = document.querySelector('a-tab-group');
@@ -105,8 +106,11 @@ import './components/bs-history.js';
         throw new Error(NO_BARCODE_DETECTED);
       }
 
+      // Validácia na zistenie modelu
+      const modelInfo = identifyModel(barcodeValue);
+
       window.cancelAnimationFrame(rafId);
-      showResult(cameraPanel, barcodeValue);
+      showResult(cameraPanel, `${barcodeValue}\n${modelInfo}`);
       bsHistoryEl?.add(barcodeValue);
       scanInstructionsEl?.setAttribute('hidden', '');
       scanBtn?.removeAttribute('hidden');
