@@ -1,0 +1,17 @@
+.model-info-container {
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.model-info {
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.model-info strong {
+  font-weight: bold;
+}

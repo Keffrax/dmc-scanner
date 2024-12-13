@@ -106,11 +106,17 @@ import { identifyModel } from './helpers/validate.js';
         throw new Error(NO_BARCODE_DETECTED);
       }
 
+      window.cancelAnimationFrame(rafId);
+
       // Validácia na zistenie modelu
       const modelInfo = identifyModel(barcodeValue);
 
-      window.cancelAnimationFrame(rafId);
-      showResult(cameraPanel, `${barcodeValue}\n${modelInfo}`);
+      // Skryjeme predchádzajúci výsledok
+      hideResult(cameraPanel); // Skryje predchádzajúci výsledok
+
+      // Zobrazíme výsledok skenovania a validácie
+      showResult(cameraPanel, `${barcodeValue}\n${modelInfo}`); // Zobrazí nový model
+
       bsHistoryEl?.add(barcodeValue);
       scanInstructionsEl?.setAttribute('hidden', '');
       scanBtn?.removeAttribute('hidden');
