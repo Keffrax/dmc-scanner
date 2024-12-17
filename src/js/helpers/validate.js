@@ -41,16 +41,20 @@ export function identifyModel(dmcContent) {
   const year = dmcContent.substring(11, 13); // Rok produkcie (napr. 22)
   const dayOfYear = dmcContent.substring(13, 16); // Deň v roku (napr. 026)
   const serialNumber = dmcContent.substring(16, 21); // Poradové číslo kusu (napr. 00532)
-  const manufacturerCode = dmcContent.substring(21, 23); // Kód výrobcu (napr. 20)
-  const zgsStand = dmcContent.substring(23, 26); // ZGS stand (napr. 006)
-  const qStand = dmcContent.substring(26, 29); // Q-stand (napr. 003)
+  const line = dmcContent.substring(21, 22); // Línia (napr. 2)
+  const manufacturerCode = dmcContent.substring(22, 24); // Kód výrobcu (napr. 20)
+  const zgsStand = dmcContent.substring(24, 27); // ZGS stand (napr. 006)
+  const qStand = dmcContent.substring(27, 30); // Q-stand (napr. 003)
+  const freePositions = dmcContent.substring(30, 36); // Voľné pozície (napr. 000000)
 
   result += `Rok produkcie: 20${year}\n`;
   result += `Deň v roku výroby: ${dayOfYear}\n`;
   result += `Poradové číslo kusu: ${serialNumber}\n`;
+  result += `Línia: ${line}\n`;
   result += `Kód výrobcu: ${manufacturerCode}\n`;
   result += `ZGS stand: ${zgsStand}\n`;
   result += `Q-stand: ${qStand}\n`;
+  result += `Voľné pozície: ${freePositions}\n`;
 
   return result;
 }

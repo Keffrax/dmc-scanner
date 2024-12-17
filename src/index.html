@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barcode/QR code Scanner</title>
+  <title>DMC Skener</title>
   <meta name="description" content="A Progressive Web Application (PWA) that scans barcodes of various formats, using the Barcode Detection API.">
   <link rel="shortcut icon" href="assets/app-icons/favicon.ico">
   <link rel="apple-touch-icon" href="assets/app-icons/apple-touch-icon.png">
@@ -27,14 +27,14 @@
         <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
         <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
       </svg>
-      <span>History</span>
+      <span>História</span>
     </button>
 
     <button id="settingsBtn" aria-label="Settings">
       <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
         <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
       </svg>
-      <span>Settings</span>
+      <span>Nastavenia</span>
     </button>
   </div>
 
@@ -65,7 +65,7 @@
       <path fill="currentColor" d="M392.533,281.6c-4.71,0-8.533,3.823-8.533,8.533v110.933c0,4.71,3.823,8.533,8.533,8.533c4.71,0,8.533-3.823,8.533-8.533V290.133C401.067,285.423,397.244,281.6,392.533,281.6z" />
     </svg>
 
-    <h1>Barcode/QR code Scanner</h1>
+    <h1>DMC Skener</h1>
   </header>
 
   <div class="container">
@@ -79,7 +79,7 @@
           <path d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H9.269c.144.162.33.324.531.475a6.785 6.785 0 0 0 .907.57l.014.006.003.002A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.224-.947l.003-.002.014-.007a4.473 4.473 0 0 0 .268-.148 6.75 6.75 0 0 0 .639-.421c.2-.15.387-.313.531-.475H2a2 2 0 0 1-2-2V6Zm2-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2Z"/>
           <path d="M8 6.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm7 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
         </svg>
-        <span>Use webcam</span>
+        <span>Kamera</span>
       </a-tab>
 
       <a-tab-panel id="cameraPanel">
@@ -90,7 +90,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="2.75em" height="2.75em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                   <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
                 </svg>
-                <span>Click to scan another barcode or press the <kbd>Esc</kbd> key.</span>
+                <span>Klikni pre ďalšie skenovanie alebo stlač <!-- Click to scan another barcode or press the --> <kbd>Esc</kbd></span>
               </button>
 
               <div slot="actions">
@@ -102,7 +102,7 @@
                 </button>
 
                 <select id="cameraSelect" class="camera-select" aria-label="Select camera" hidden>
-                  <option value="" disabled selected>--Select Camera--</option>
+                  <option value="" disabled selected>--Zvoľ kameru--</option>
                 </select>
 
                 <div class="zoom-controls" id="zoomControls" hidden>
@@ -136,7 +136,7 @@
         </div>
 
         <div id="scanInstructions" class="scan-instructions" hidden>
-          Align barcode in the center of the frame.
+          Namier kód do stredu rámu<!-- Align barcode in the center of the frame -->.
         </div>
       </a-tab-panel>
 
@@ -156,7 +156,7 @@
             </g>
           </g>
         </svg>
-        <span>Use image</span>
+        <span>Obrázok</span>
       </a-tab>
 
       <a-tab-panel id="filePanel">
@@ -178,7 +178,7 @@
               </g>
             </svg>
 
-            Click or drop an image to scan
+            Klikni alebo presuň obrázok pre skenovanie<!-- Click or drop an image to scan -->
           </span>
         </files-dropzone>
       </a-tab-panel>
@@ -186,53 +186,50 @@
   </div>
 
   <footer>
-    <div class="source-code">
-      <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-      </svg>
-
-      <span>
-        Source code on <a href="https://github.com/georapbox/barcode-scanner" class="text-underline" target="_blank" rel="noreferrer noopener">Github</a>
-      </span>
+    <div class="source-code" style="text-align: center;">
+      <div>
+        Created by <a class="text-underline" target="_blank">Rastislav and Daniel</a>
+      </div>
     </div>
-
-    <p>
-      Licensed under <a href="https://github.com/georapbox/barcode-scanner/blob/main/LICENSE" target="_blank" rel="noopener">The MIT License (MIT)</a>
-    </p>
+    <div style="margin-top: 20px;">
+      <img src="assets/logopass.png" alt="Logo" style="width: 150px; height: 70px;">
+    </div>
   </footer>
 
+
+
   <modal-element id="historyDialog" class="popover-dialog history-dialog" placement="top-end" hidden>
-    <span slot="header">History</span>
+    <span slot="header">História</span>
     <bs-history></bs-history>
   </modal-element>
 
   <modal-element id="settingsDialog" class="popover-dialog settings-dialog" placement="top-end" hidden>
-    <span slot="header">Settings</span>
+    <span slot="header">Nastavenia</span>
 
     <bs-settings>
       <form id="settingsForm" autocomplete="off">
         <fieldset>
-          <legend>When barcode is detected...</legend>
+          <legend>Keď je kód nájdený...</legend>
           <ul>
-            <li><label><input type="checkbox" name="general-settings" value="openWebPage">Open web pages automatically</label></li>
-            <li><label><input type="checkbox" name="general-settings" value="openWebPageSameTab">Open web pages in the same tab</label></li>
-            <li><label><input type="checkbox" name="general-settings" value="addToHistory">Add to history</label></li>
+            <li><label><input type="checkbox" name="general-settings" value="openWebPage">Automaticky otvor stránku</label></li>
+            <li><label><input type="checkbox" name="general-settings" value="openWebPageSameTab">Otvor stránku v rovnakom okne</label></li>
+            <li><label><input type="checkbox" name="general-settings" value="addToHistory">Pridaj do histórie</label></li>
           </ul>
         </fieldset>
 
         <fieldset>
-          <legend>Effects</legend>
+          <legend>Efekty</legend>
           <ul>
-            <li><label><input type="checkbox" name="general-settings" value="beep">Beep</label></li>
-            <li><label><input type="checkbox" name="general-settings" value="vibrate">Vibrate (Android)</label></li>
+            <li><label><input type="checkbox" name="general-settings" value="beep">Zvuk</label></li>
+            <li><label><input type="checkbox" name="general-settings" value="vibrate">Vibrácie</label></li>
           </ul>
         </fieldset>
 
         <fieldset name="bs-formats">
           <legend>
-            Supported formats
+            Podporovaný formát
             <br>
-            <small class="text-muted fw-normal">If none is checked, all formats will be supported.</small>
+            <small class="text-muted fw-normal">Pokial nič nie je zvolené, všetky formáty budú podporované<!-- If none is checked, all formats will be supported. --></small>
           </legend>
           <ul id="formatsList" class="formats-list"></ul>
         </fieldset>

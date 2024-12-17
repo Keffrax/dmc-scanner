@@ -18,7 +18,6 @@ import './components/clipboard-copy.js';
 import './components/bs-result.js';
 import './components/bs-settings.js';
 import './components/bs-history.js';
-import { identifyModel } from './helpers/validate.js';
 
 (async function () {
   const tabGroupEl = document.querySelector('a-tab-group');
@@ -108,14 +107,11 @@ import { identifyModel } from './helpers/validate.js';
 
       window.cancelAnimationFrame(rafId);
 
-      // Validácia na zistenie modelu
-      const modelInfo = identifyModel(barcodeValue);
-
       // Skryjeme predchádzajúci výsledok
       hideResult(cameraPanel); // Skryje predchádzajúci výsledok
 
       // Zobrazíme výsledok skenovania a validácie
-      showResult(cameraPanel, `${modelInfo}`); // Zobrazí nový model
+      showResult(cameraPanel, `${barcodeValue}`); // Zobrazí nový model
 
       bsHistoryEl?.add(barcodeValue);
       scanInstructionsEl?.setAttribute('hidden', '');
