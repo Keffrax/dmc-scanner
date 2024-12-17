@@ -32,7 +32,7 @@ export function identifyModel(dmcContent) {
   }
   // Identifikácia ostatných modelov (10 číslic po prvom znaku)
   else {
-    const modelCode = dmcContent.substring(1, 11);
+    const modelCode = dmcContent.substring(0, 11);
     const modelName = modelLibrary[modelCode] || 'Neznámy model';
     result += `Model: ${modelName}\n`;
   }

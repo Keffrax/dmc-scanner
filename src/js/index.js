@@ -106,23 +106,22 @@ import { identifyModel } from './helpers/validate.js';
         throw new Error(NO_BARCODE_DETECTED);
       }
 
-      // Validácia na zistenie modelu
-      const modelInfo = identifyModel(barcodeValue);
-
+      // Zastavíme skenovanie
       window.cancelAnimationFrame(rafId);
 
-      // Získame validovaný obsah
-      const validationResult = identifyModel(barcodeValue); // NOVÉ
+      // Skryjeme predchádzajúce výsledky
+      hideResult(cameraPanel);
 
-      // Zobrazíme výsledok skenovania a validácie
-      showResult(cameraPanel, `${barcodeValue}\n${validationResult}`); // NOVÉ
+      // Zobrazíme samotný obsah DMC kódu
+      showResult(cameraPanel, `Obsah kódu: ${barcodeValue}`);
+
+      // Zobrazíme validáciu modelu oddelene
+      const modelInfo = identifyModel(barcodeValue);
+      showResult(cameraPanel, modelInfo);
+
       bsHistoryEl?.add(barcodeValue);
 
-      // Skrytie predchádzajúceho výsledku a zobrazenie nového
-      hideResult(cameraPanel); // Skryje predchádzajúci výsledok
-      showResult(cameraPanel, `${barcodeValue}\n${modelInfo}`); // Zobrazí nový model
-
-      bsHistoryEl?.add(barcodeValue);
+      // Skrytie inštrukcií a tlačidiel
       scanInstructionsEl?.setAttribute('hidden', '');
       scanBtn?.removeAttribute('hidden');
       scanFrameEl?.setAttribute('hidden', '');
@@ -131,8 +130,7 @@ import { identifyModel } from './helpers/validate.js';
 
       return;
     } catch {
-      // If no barcode is detected, the error is caught here.
-      // We can ignore the error and continue scanning.
+      // Ignorujeme chybu a pokračujeme v skenovaní
     }
 
     if (shouldScan) {

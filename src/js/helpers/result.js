@@ -13,6 +13,11 @@ const styles = /* css */ `
     border: 1px solid #ddd;
     border-radius: 4px;
     text-align: center;
+    color: #fff; /* Štandardná farba textu */
+  }
+
+  .model-info.unknown {
+    color: #ff4d4f; /* Červená farba pre neznámy model */
   }
 
   .model-info strong {
@@ -82,6 +87,12 @@ export async function showResult(element, value) {
   infoLines.forEach(line => {
     const lineElement = document.createElement('div');
     lineElement.classList.add('model-info');
+
+    // Ak je riadok "Neznámy model", pridáme špeciálnu triedu pre červenú farbu
+    if (line.includes('Neznámy model')) {
+      lineElement.classList.add('unknown');
+    }
+
     lineElement.textContent = line;
     infoContainer.appendChild(lineElement);
   });
