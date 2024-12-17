@@ -112,9 +112,6 @@ import { identifyModel } from './helpers/validate.js';
       // Skryjeme predchádzajúce výsledky
       hideResult(cameraPanel);
 
-      // Zobrazíme samotný obsah DMC kódu
-      showResult(cameraPanel, `Obsah kódu: ${barcodeValue}`);
-
       // Zobrazíme validáciu modelu oddelene
       const modelInfo = identifyModel(barcodeValue);
       showResult(cameraPanel, modelInfo);
