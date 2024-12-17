@@ -94,7 +94,7 @@ import { identifyModel } from './helpers/validate.js';
    * @returns {Promise<void>} - A Promise that resolves when the barcode is detected.
    */
   async function scan() {
-    log('Scanning...');
+    console.log('Scanning...');
 
     scanInstructionsEl?.removeAttribute('hidden');
 
@@ -106,15 +106,20 @@ import { identifyModel } from './helpers/validate.js';
         throw new Error(NO_BARCODE_DETECTED);
       }
 
-      window.cancelAnimationFrame(rafId);
-
       // Validácia na zistenie modelu
       const modelInfo = identifyModel(barcodeValue);
 
-      // Skryjeme predchádzajúci výsledok
-      hideResult(cameraPanel); // Skryje predchádzajúci výsledok
+      window.cancelAnimationFrame(rafId);
+
+      // Získame validovaný obsah
+      const validationResult = identifyModel(barcodeValue); // NOVÉ
 
       // Zobrazíme výsledok skenovania a validácie
+      showResult(cameraPanel, `${barcodeValue}\n${validationResult}`); // NOVÉ
+      bsHistoryEl?.add(barcodeValue);
+
+      // Skrytie predchádzajúceho výsledku a zobrazenie nového
+      hideResult(cameraPanel); // Skryje predchádzajúci výsledok
       showResult(cameraPanel, `${barcodeValue}\n${modelInfo}`); // Zobrazí nový model
 
       bsHistoryEl?.add(barcodeValue);
@@ -123,6 +128,7 @@ import { identifyModel } from './helpers/validate.js';
       scanFrameEl?.setAttribute('hidden', '');
       videoCaptureActionsEl?.setAttribute('hidden', '');
       triggerScanEffects();
+
       return;
     } catch {
       // If no barcode is detected, the error is caught here.
