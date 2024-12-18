@@ -14,31 +14,61 @@ const modelLibrary = {
   '4M0201994BE': 'M400'
 };
 
+// Knižnica ZGS Stand pre jednotlivé modely
+const zgsLibrary = {
+  M306: '006',
+  M307: '004',
+  M308: '004',
+  M311: '004',
+  M313: '004',
+  M309: '005',
+  M310: '002',
+  M423: '002',
+  M312: '003',
+  M334: '003'
+};
+
+// Knižnica Q Stand pre jednotlivé modely
+const qStandLibrary = {
+  M306: '003',
+  M307: '003',
+  M308: '003',
+  M309: '003',
+  M310: '001',
+  M311: '001',
+  M312: '001',
+  M313: '001',
+  M334: '001',
+  M423: '001'
+};
+
 // Funkcia na rozpoznanie modelu a analýzu DMC obsahu
 export function identifyModel(dmcContent) {
   let result = '';
 
   // Identifikácia modelu M333
+  let modelName = '';
   if (dmcContent.includes('PWS130721000001')) {
     const modelCode = dmcContent.substring(dmcContent.length - 9); // "5E131552E"
-    const modelName = modelLibrary[modelCode] || 'Neznámy model';
+    modelName = modelLibrary[modelCode] || 'Neznámy model';
     result += `Model: ${modelName}\n`;
   }
   // Identifikácia modelu M400
   else if (dmcContent.includes('#4M')) {
     const modelCode = dmcContent.replace(/[^A-Za-z0-9]/g, ''); // Odstránenie nealfanumerických znakov
-    const modelName = modelLibrary[modelCode] || 'Neznámy model';
+    modelName = modelLibrary[modelCode] || 'Neznámy model';
     result += `Model: ${modelName}\n`;
   }
   // Identifikácia ostatných modelov (10 číslic po prvom znaku)
   else {
     const modelCode = dmcContent.substring(0, 11);
-    const modelName = modelLibrary[modelCode] || 'Neznámy model';
+    modelName = modelLibrary[modelCode] || 'Neznámy model';
     result += `Model: ${modelName}\n`;
   }
 
   // Analýza ďalších častí DMC kódu podľa špecifikácie
   const year = dmcContent.substring(11, 13); // Rok produkcie (napr. 22)
+  const fullYear = `20${year}`; // Plný rok (napr. 2022)
   const dayOfYear = dmcContent.substring(13, 16); // Deň v roku (napr. 026)
   const serialNumber = dmcContent.substring(16, 21); // Poradové číslo kusu (napr. 00532)
   const line = dmcContent.substring(21, 22); // Línia (napr. 2)
@@ -47,13 +77,52 @@ export function identifyModel(dmcContent) {
   const qStand = dmcContent.substring(27, 30); // Q-stand (napr. 003)
   const freePositions = dmcContent.substring(30, 36); // Voľné pozície (napr. 000000)
 
-  result += `Rok produkcie: 20${year}\n`;
-  result += `Deň v roku výroby: ${dayOfYear}\n`;
+  // Kontrola platnosti dňa v roku
+  const dayOfYearInt = parseInt(dayOfYear, 10);
+  if (dayOfYearInt < 1 || dayOfYearInt > 365) {
+    result += `Deň v roku: Neznámy deň (${dayOfYear})\n`;
+  } else {
+    result += `Deň v roku výroby: ${dayOfYear}\n`;
+  }
+
+  if (fullYear === '2024') {
+    result += `Rok produkcie: 2024\n`;
+  } else {
+    result += `Rok produkcie: Neznámy rok (${fullYear})\n`;
+  }
+
   result += `Poradové číslo kusu: ${serialNumber}\n`;
-  result += `Línia: ${line}\n`;
-  result += `Kód výrobcu: ${manufacturerCode}\n`;
-  result += `ZGS stand: ${zgsStand}\n`;
-  result += `Q-stand: ${qStand}\n`;
+
+  // Kontrola Línií
+  if (line === '0') {
+    result += `Línia: ${line}\n`;
+  } else {
+    result += `Línia: Neznáma línia (${line})\n`;
+  }
+
+  // Kontrola Kódu výrobcu
+  if (manufacturerCode === '20') {
+    result += `Kód výrobcu: ${manufacturerCode}\n`;
+  } else {
+    result += `Kód výrobcu: Neznámy kód výrobcu (${manufacturerCode})\n`;
+  }
+
+  // Kontrola ZGS Stand
+  const correctZgsStand = zgsLibrary[modelName] || 'Neznámy ZGS Stand';
+  if (zgsStand === correctZgsStand) {
+    result += `ZGS stand: ${zgsStand}\n`;
+  } else {
+    result += `ZGS stand: Neznámy ZGS Stand (${zgsStand})\n`;
+  }
+
+  // Kontrola Q Stand
+  const correctQStand = qStandLibrary[modelName] || 'Neznámy Q-Stand';
+  if (qStand === correctQStand) {
+    result += `Q-stand: ${qStand}\n`;
+  } else {
+    result += `Q-stand: Neznámy Q-Stand (${qStand})\n`;
+  }
+
   result += `Voľné pozície: ${freePositions}\n`;
 
   return result;

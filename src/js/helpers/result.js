@@ -20,6 +20,14 @@ const styles = /* css */ `
     color: #ff4d4f; /* Červená farba pre neznámy model */
   }
 
+  .model-info.zgs-unknown {
+    color: #ff4d4f; /* Červená farba pre neznámy ZGS Stand */
+  }
+
+  .model-info.q-unknown {
+    color: #ff4d4f; /* Červená farba pre neznámy Q-Stand */
+  }
+
   .model-info strong {
     font-weight: bold;
   }
@@ -88,8 +96,16 @@ export async function showResult(element, value) {
     const lineElement = document.createElement('div');
     lineElement.classList.add('model-info');
 
-    // Ak je riadok "Neznámy model", pridáme špeciálnu triedu pre červenú farbu
-    if (line.includes('Neznámy model')) {
+    // Ak je riadok "Neznámy model", "Neznámy rok", "Neznámy deň", "Neznámy kód výrobcu", "Neznámy ZGS Stand" alebo "Neznámy Q-Stand", pridáme špeciálnu triedu pre červenú farbu
+    if (
+      line.includes('Neznámy model') ||
+      line.includes('Neznámy rok') ||
+      line.includes('Neznámy deň') ||
+      line.includes('Neznáma línia') ||
+      line.includes('Neznámy kód výrobcu') ||
+      line.includes('Neznámy ZGS Stand') ||
+      line.includes('Neznámy Q-Stand')
+    ) {
       lineElement.classList.add('unknown');
     }
 
