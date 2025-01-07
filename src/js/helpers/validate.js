@@ -85,7 +85,7 @@ export function identifyModel(dmcContent) {
     result += `Deň v roku výroby: ${dayOfYear}\n`;
   }
 
-  if (fullYear === '2024') {
+  if (fullYear === '2025') {
     result += `Rok produkcie: 2024\n`;
   } else {
     result += `Rok produkcie: Neznámy rok (${fullYear})\n`;

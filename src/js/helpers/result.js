@@ -5,10 +5,6 @@ const styles = /* css */ `
     font-family: Arial, sans-serif;
   }
 
-  .result_item {
-    font-size: 15px;
-  }
-
   .model-info {
     margin-bottom: 5px;
     padding: 5px;
