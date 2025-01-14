@@ -101,10 +101,12 @@ export async function showResult(element, value) {
       line.includes('Neznámy model') ||
       line.includes('Neznámy rok') ||
       line.includes('Neznámy deň') ||
+      line.includes('Neznáme poradové číslo') ||
       line.includes('Neznáma línia') ||
       line.includes('Neznámy kód výrobcu') ||
       line.includes('Neznámy ZGS Stand') ||
-      line.includes('Neznámy Q-Stand')
+      line.includes('Neznámy Q-Stand') ||
+      line.includes('Neznáme voľné pozície')
     ) {
       lineElement.classList.add('unknown');
     }

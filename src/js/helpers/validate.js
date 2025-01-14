@@ -68,7 +68,6 @@ export function identifyModel(dmcContent) {
 
   // Analýza ďalších častí DMC kódu podľa špecifikácie
   const year = dmcContent.substring(11, 13); // Rok produkcie (napr. 22)
-  const fullYear = `20${year}`; // Plný rok (napr. 2022)
   const dayOfYear = dmcContent.substring(13, 16); // Deň v roku (napr. 026)
   const serialNumber = dmcContent.substring(16, 21); // Poradové číslo kusu (napr. 00532)
   const line = dmcContent.substring(21, 22); // Línia (napr. 2)
@@ -76,6 +75,14 @@ export function identifyModel(dmcContent) {
   const zgsStand = dmcContent.substring(24, 27); // ZGS stand (napr. 006)
   const qStand = dmcContent.substring(27, 30); // Q-stand (napr. 003)
   const freePositions = dmcContent.substring(30, 36); // Voľné pozície (napr. 000000)
+
+  // Kontrola roku produkcie
+  const fullYear = `20${year}`;
+  if (fullYear === '2025') {
+    result += `Rok produkcie: ${fullYear}\n`;
+  } else {
+    result += `Rok produkcie: Neznámy rok (${fullYear})\n`;
+  }
 
   // Kontrola platnosti dňa v roku
   const dayOfYearInt = parseInt(dayOfYear, 10);
@@ -85,13 +92,12 @@ export function identifyModel(dmcContent) {
     result += `Deň v roku výroby: ${dayOfYear}\n`;
   }
 
-  if (fullYear === '2025') {
-    result += `Rok produkcie: 2024\n`;
+  // Kontrola Poradového čísla kusu
+  if (/^\d{5}$/.test(serialNumber)) {
+    result += `Poradové číslo kusu: ${serialNumber}\n`;
   } else {
-    result += `Rok produkcie: Neznámy rok (${fullYear})\n`;
+    result += `Poradové číslo kusu: Neznáme poradové číslo (${serialNumber})\n`;
   }
-
-  result += `Poradové číslo kusu: ${serialNumber}\n`;
 
   // Kontrola Línií
   if (line === '0') {
@@ -123,7 +129,12 @@ export function identifyModel(dmcContent) {
     result += `Q-stand: Neznámy Q-Stand (${qStand})\n`;
   }
 
-  result += `Voľné pozície: ${freePositions}\n`;
+  // Kontrola Voľných pozícií
+  if (freePositions === '000000') {
+    result += `Voľné pozície: ${freePositions}\n`;
+  } else {
+    result += `Voľné pozície: Neznáme voľné pozície (${freePositions})\n`;
+  }
 
   return result;
 }
