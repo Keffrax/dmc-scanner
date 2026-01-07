@@ -78,7 +78,7 @@ export function identifyModel(dmcContent) {
 
   // Kontrola roku produkcie
   const fullYear = `20${year}`;
-  if (fullYear === '2025') {
+  if (fullYear === '2026') {
     result += `Rok produkcie: ${fullYear}\n`;
   } else {
     result += `Rok produkcie: Neznámy rok (${fullYear})\n`;
